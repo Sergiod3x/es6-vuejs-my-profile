@@ -29,7 +29,63 @@ new Vue(
                         date: '17-06-2021'
                     }
                 ]
-            }
+            },
+           postText : "",
+
         },
+        methods:{
+            // autofocus : function(){
+            //     const element = document.getElementById("newTaskElement");
+            //     element.focus();
+            // },
+            // addTask: function(){
+            //     this.todoList.push(this.newTask);
+            //     this.newTask="";
+            // },
+            // deleteTask: function(index){
+            //     console.log(index);
+            //     this.todoList.splice(index,1);
+               
+            // },
+            // returnImg : function(index){
+            //     return ("./img/avatar" +this.contacts[index].avatar + ".jpg");
+
+            // },
+            // sentOrReceived : function(index) {
+            //     return ("message" + " " + this.contacts[1].messages[index].status);
+            
+                
+            // },
+            // updateIndex : function(index){
+            //     this.contactIndex = index;
+            // },
+            getCurrentDateTime: function() {
+                const dateTimeNow = dayjs();
+                return dateTimeNow.format("DD/MM/YYYY HH:mm:ss");
+
+            },
+            newPost: function(){
+                this.myProfile.posts.push({
+                    date : this.getCurrentDateTime(),  
+                    text : this.postText,
+                   
+                });
+                this.postText = "";
+
+            },
+
+     
+
+            removePost: function(index){
+                console.log(index);
+                
+                this.myProfile.posts.splice(index,1);
+                 
+            },
+            
+
+
+
+    }
     }
 );

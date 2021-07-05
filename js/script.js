@@ -27,6 +27,12 @@ const data = {
     }
 };
 
+function removePost (ind){
+    console.log(ind);                
+    this.myProfile.posts.splice(ind,1);
+     
+}
+
 var userDetailHtml = document.querySelector(".user-details")
 
 userDetailHtml.innerHTML = `
@@ -38,7 +44,7 @@ userDetailHtml.innerHTML = `
 
 var postListHtml = document.querySelector(".post-list")
 
-data.myProfile.posts.forEach((post) => {
+data.myProfile.posts.forEach((post, index) => {
 
     // prepariamo la parte interna dell'elemento html .post
     let postHtml = `
@@ -47,7 +53,7 @@ data.myProfile.posts.forEach((post) => {
             <img src="${data.myProfile.details.pic}" alt="user pic">
         </div>
         <div class="details">
-            <div class="user-name">${data.myProfile.details.name} ${data.myProfile.details.surname}</div>
+            <div class="user-name">${data.myProfile.details.name} ${data.myProfile.details.surname} <i class="fas fa-times" onclick="removePost(index)"></i></div>
             <div class="post-date">${post.date}</div>
         </div>
     </div> 

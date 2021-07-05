@@ -77,8 +77,7 @@ new Vue(
      
 
             removePost: function(index){
-                console.log(index);
-                
+                console.log(index);                
                 this.myProfile.posts.splice(index,1);
                  
             },

@@ -27,11 +27,28 @@ const data = {
     }
 };
 
-function removePost (ind){
-    console.log(ind);                
-    this.myProfile.posts.splice(ind,1);
+// const xHtml = document.querySelector(".fas");
+
+// buttonHtml.addEventListener("click", function () {
+// function removePost (ind){
+//     console.log(ind);                
+//     this.myProfile.posts.splice(ind,1);
      
-}
+// }
+
+
+function getCurrentDateTime() {
+    const dateTimeNow = dayjs();
+    return dateTimeNow.format("DD/MM/YYYY HH:mm:ss");
+} 
+// function newPost(text){
+
+//     let text = document.getElementById("text-area").value;
+//     this.myProfile.posts.push({
+//         date : getCurrentDateTime(),
+//         text : text,
+//     });
+// }
 
 var userDetailHtml = document.querySelector(".user-details")
 
@@ -53,7 +70,7 @@ data.myProfile.posts.forEach((post, index) => {
             <img src="${data.myProfile.details.pic}" alt="user pic">
         </div>
         <div class="details">
-            <div class="user-name">${data.myProfile.details.name} ${data.myProfile.details.surname} <i class="fas fa-times" onclick="removePost(index)"></i></div>
+            <div class="user-name">${data.myProfile.details.name} ${data.myProfile.details.surname} <i class="fas fa-times"></i></div>
             <div class="post-date">${post.date}</div>
         </div>
     </div> 
@@ -76,3 +93,38 @@ data.myProfile.posts.forEach((post, index) => {
 
     postListHtml.innerHTML += `<div class="post"> ${postHtml} </div>`
 }) 
+
+const buttonHtml = document.querySelector(".send");
+
+buttonHtml.addEventListener("click", function () {
+
+    let correntDate = getCurrentDateTime();
+    const check = document.querySelector('#text-area');
+    let newText = check.value;
+     
+    data.myProfile.posts.push({     
+        text: newText,
+        date: correntDate     
+    })
+
+    check.value = ""; 
+
+    let newObjets = `    
+    <div class="post-details"> 
+        <div class="user-pic">
+            <img src="${data.myProfile.details.pic}" alt="user pic">
+        </div>
+        <div class="details">
+            <div class="user-name">${data.myProfile.details.name} ${data.myProfile.details.surname} <i class="fas fa-times"></i></div>
+            <div class="post-date">${correntDate}</div>
+        </div>
+        
+    </div> 
+    <div class="post-text">
+        ${newText}
+    </div>
+    `
+
+    postListHtml.innerHTML += `<div class="post"> ${newObjets} </div>`
+
+})
